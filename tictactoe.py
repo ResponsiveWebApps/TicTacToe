@@ -12,6 +12,17 @@ def print_board():
     print("-------------")
     print(markers[6], " ¦ ", markers[7], " ¦ ", markers[8])
 
+#Checks winning conditions for game
+
+def game_won():
+    if markers[0] == markers[1] == markers or markers[3] == markers[4] == markers[5] or markers[6] == markers[7] == markers[8]:
+
+        print("Game won!")
+        markers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    
+
+
+#AI places marker
 def ai_Marker():
     aiMarker = random.randrange(0,8)
 
@@ -28,4 +39,5 @@ while gameOn:
         break
 
     markers[newPossition-1] = "X"
+    #game_won()
     ai_Marker()
