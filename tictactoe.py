@@ -2,8 +2,10 @@ import random
 
 #Stores game markers for X an O's. Default is empty.
 
-markers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+default_markers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+markers = default_markers
 gameOn = True
+player = "Human"
 
 def print_board():
     print(markers[0], " ¦ ", markers[1], " ¦ ", markers[2])
@@ -30,8 +32,15 @@ def game_won():
         
         
 def reset_game():
-    #del markers[:]
-    markers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    markers[0] = "1" 
+    markers[1] = "2" 
+    markers[2] = "3"
+    markers[3] = "4" 
+    markers[4] = "5"
+    markers[5] = "6"
+    markers[6] = "7"
+    markers[7] = "8"
+    markers[8] = "9"
 
 
 #AI places marker
@@ -50,10 +59,13 @@ while gameOn:
     newPossition = int(input("Place X marker in possition 1-2-3-4-5-6-7-8-9?" + "\n" + "0 to exit "))
     print("\n")
 
+    #Exits game
     if newPossition == 0:
         break
 
     markers[newPossition-1] = "X"
+    player = "Human"
     game_won()
     ai_marker()
+    player = "AI"
     game_won()
