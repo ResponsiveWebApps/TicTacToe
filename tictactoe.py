@@ -15,15 +15,24 @@ def print_board():
 #Checks winning conditions for game
 
 def game_won():
-    if markers[0] == markers[1] == markers or markers[3] == markers[4] == markers[5] or markers[6] == markers[7] == markers[8]:
+    if markers[0] == markers[1] == markers[2] or \
+       markers[3] == markers[4] == markers[5] or \
+       markers[6] == markers[7] == markers[8] or \
+       markers[0] == markers[3] == markers[6] or \
+       markers[1] == markers[4] == markers[7] or \
+       markers[2] == markers[5] == markers[8] or \
+       markers[0] == markers[4] == markers[8] or \
+       markers[2] == markers[4] == markers[6]:
 
         print("Game won!")
-        markers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        print("\n")
+        #markers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        
     
 
 
 #AI places marker
-def ai_Marker():
+def ai_marker():
     aiMarker = random.randrange(0,8)
 
     while markers[aiMarker] == "X" or markers[aiMarker] == "O":
@@ -31,13 +40,16 @@ def ai_Marker():
 
     markers[aiMarker] = "O"
 
+#Runs game
 while gameOn:
     print_board()
-    newPossition= int(input("Place X marker in possition 1-2-3-4-5-6-7-8-9? 0 to exit "))
+    print("\n")
+    newPossition= int(input("Place X marker in possition 1-2-3-4-5-6-7-8-9?" + "\n" + "0 to exit "))
+    print("\n")
 
     if newPossition == 0:
         break
 
     markers[newPossition-1] = "X"
-    #game_won()
-    ai_Marker()
+    ai_marker()
+    game_won()
