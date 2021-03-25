@@ -12,7 +12,7 @@ def print_board():
     print("-------------")
     print(markers[6], " ¦ ", markers[7], " ¦ ", markers[8])
 
-#Checks winning conditions for game
+#Checks win conditions for game
 
 def game_won():
     if markers[0] == markers[1] == markers[2] or \
@@ -26,9 +26,12 @@ def game_won():
 
         print("Game won!")
         print("\n")
-        #markers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+        reset_game()
         
-    
+        
+def reset_game():
+    #del markers[:]
+    markers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 
 #AI places marker
@@ -44,12 +47,13 @@ def ai_marker():
 while gameOn:
     print_board()
     print("\n")
-    newPossition= int(input("Place X marker in possition 1-2-3-4-5-6-7-8-9?" + "\n" + "0 to exit "))
+    newPossition = int(input("Place X marker in possition 1-2-3-4-5-6-7-8-9?" + "\n" + "0 to exit "))
     print("\n")
 
     if newPossition == 0:
         break
 
     markers[newPossition-1] = "X"
+    game_won()
     ai_marker()
     game_won()
