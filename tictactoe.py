@@ -2,7 +2,7 @@ import random
 
 #Stores game markers for X an O's. Default is empty.
 
-markers = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+markers = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 gameOn = True
 
 #Monitors who won. 
@@ -25,38 +25,51 @@ def game_won(h_score, a_score):
     human_score = h_score
     ai_score = a_score
 
-    if markers[0] == markers[1] == markers[2] or \
-       markers[3] == markers[4] == markers[5] or \
-       markers[6] == markers[7] == markers[8] or \
-       markers[0] == markers[3] == markers[6] or \
-       markers[1] == markers[4] == markers[7] or \
-       markers[2] == markers[5] == markers[8] or \
-       markers[0] == markers[4] == markers[8] or \
-       markers[2] == markers[4] == markers[6]:
+    if markers[0] == markers[1] == markers[2] == "X" or \
+       markers[3] == markers[4] == markers[5] == "X" or \
+       markers[6] == markers[7] == markers[8] == "X" or \
+       markers[0] == markers[3] == markers[6] == "X" or \
+       markers[1] == markers[4] == markers[7] == "X" or \
+       markers[2] == markers[5] == markers[8] == "X" or \
+       markers[0] == markers[4] == markers[8] == "X" or \
+       markers[2] == markers[4] == markers[6] == "X" or \
+       markers[0] == markers[1] == markers[2] == "O" or \
+       markers[3] == markers[4] == markers[5] == "O" or \
+       markers[6] == markers[7] == markers[8] == "O" or \
+       markers[0] == markers[3] == markers[6] == "O" or \
+       markers[1] == markers[4] == markers[7] == "O" or \
+       markers[2] == markers[5] == markers[8] == "O" or \
+       markers[0] == markers[4] == markers[8] == "O" or \
+       markers[2] == markers[4] == markers[6] == "O" :
 
         if player == "Human":
             human_score += 1
         else:
             ai_score += 1
 
+        print_board()
         print(player, "won!")
         print("Human:", human_score, "AI:", ai_score)
         print("\n")
         reset_game()
+    
+    if " " not in markers:
+        print("Draw! Play again.")
+        reset_game()
 
-        return human_score, ai_score
+    return human_score, ai_score
         
                 
 def reset_game():
-    markers[0] = "1" 
-    markers[1] = "2" 
-    markers[2] = "3"
-    markers[3] = "4" 
-    markers[4] = "5"
-    markers[5] = "6"
-    markers[6] = "7"
-    markers[7] = "8"
-    markers[8] = "9"
+    markers[0] = " " 
+    markers[1] = " " 
+    markers[2] = " "
+    markers[3] = " " 
+    markers[4] = " "
+    markers[5] = " "
+    markers[6] = " "
+    markers[7] = " "
+    markers[8] = " "
 
 #AI places marker.
 def ai_marker():
