@@ -55,6 +55,7 @@ def game_won(h_score, a_score):
     
     if " " not in markers:
         print("Draw! Play again.")
+        print("\n")
         reset_game()
 
     return human_score, ai_score
