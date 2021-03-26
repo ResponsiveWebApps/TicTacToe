@@ -18,9 +18,13 @@ def print_board():
     print("-------------")
     print(markers[6], " ¦ ", markers[7], " ¦ ", markers[8])
 
-#Checks win conditions for game.
+#Checks win conditions for game. Needs update scores as global variables and parameters need a different name. 
 
-def game_won(human_score, ai_score):
+def game_won(h_score, a_score):
+    global human_score, ai_score
+    human_score = h_score
+    ai_score = a_score
+
     if markers[0] == markers[1] == markers[2] or \
        markers[3] == markers[4] == markers[5] or \
        markers[6] == markers[7] == markers[8] or \
@@ -39,6 +43,9 @@ def game_won(human_score, ai_score):
         print("Human:", human_score, "AI:", ai_score)
         print("\n")
         reset_game()
+
+        return human_score, ai_score
+        
                 
 def reset_game():
     markers[0] = "1" 
@@ -71,9 +78,14 @@ while gameOn:
     if newPossition == 0:
         break
 
-    markers[newPossition-1] = "X"
-    player = "Human"
-    game_won(human_score, ai_score)
-    ai_marker()
-    player = "AI"
-    game_won(human_score, ai_score)
+    if markers[newPossition-1] == "X" or markers[newPossition-1] == "O":
+        print("Try a different possition.")
+        print("\n")
+
+    else:
+        markers[newPossition-1] = "X"
+        player = "Human"
+        game_won(human_score, ai_score)
+        ai_marker()
+        player = "AI"
+        game_won(human_score, ai_score)
