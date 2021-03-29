@@ -1,0 +1,69 @@
+from math import inf as infinity
+from random import choice
+import platform
+import time
+from os import system
+
+human = -1
+ai = +1
+board = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+]
+
+#Checks the state of the board and evaluates if the AI won or the human.
+
+def evaluate(state):  
+    if wins(state, ai):
+        score = +1
+    elif wins(state, human:
+        score = -1
+    else:
+        score = 0
+
+    return score
+
+#Checks the state of the board to an array of win conditions.
+
+def wins(state, player):
+    win_conditions = [
+        [state[0][0], state[0][1], state[0][2]],
+        [state[1][0], state[1][1], state[1][2]],
+        [state[2][0], state[2][1], state[2][2]],
+        [state[0][0], state[1][0], state[2][0]],
+        [state[0][1], state[1][1], state[2][1]],
+        [state[0][2], state[1][2], state[2][2]],
+        [state[0][0], state[1][1], state[2][2]],
+        [state[2][0], state[1][1], state[0][2]],
+    ]
+
+    if [player, player, player] in win_conditions:
+        return True
+    else:
+        return False
+
+#Checks if the game is won.
+
+def game_won(state):
+    return wins(state, human) or wins(state, ai)
+
+#Makes a list of empty cells.
+
+def empty_cells(state):
+    cells = []
+
+    for x, row in enumerate(state):
+        for y, cell in enumerate(row):
+            if cell == 0:
+                cells.append([x, y])
+
+    return cells
+
+#Checks if move is vlid in the empty-cells.
+ 
+def valid_move(x, y):
+    if [x, y] in empty_cells(board):
+        return True
+    else:
+        return False
