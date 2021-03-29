@@ -17,7 +17,7 @@ board = [
 def evaluate(state):  
     if wins(state, ai):
         score = +1
-    elif wins(state, human:
+    elif wins(state, human):
         score = -1
     else:
         score = 0
@@ -78,7 +78,7 @@ def set_move(x, y, player):
 #Calculate the minimax for optimal move
 
 def minimax(state, depth, player):
-    if player == COMP:
+    if player == ai:
         best = [-1, -1, -infinity]
     else:
         best = [-1, -1, +infinity]
@@ -150,7 +150,7 @@ def ai_turn(c_choice, h_choice):
 
 def human_turn(c_choice, h_choice):
     depth = len(empty_cells(board))
-    if depth == 0 or game_over(board):
+    if depth == 0 or game_won(board):
         return
 
     #Dictionary of legal moves.
@@ -230,12 +230,12 @@ def main():
 
     #If game is won.
     
-    if wins(board, HUMAN):
+    if wins(board, human):
         clean()
         print(f'Human turn [{h_choice}]')
         render(board, c_choice, h_choice)
         print('YOU WIN!')
-    elif wins(board, COMP):
+    elif wins(board, ai):
         clean()
         print(f'Computer turn [{c_choice}]')
         print_board(board, c_choice, h_choice)
