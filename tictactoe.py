@@ -179,3 +179,74 @@ def human_turn(c_choice, h_choice):
             exit()
         except (KeyError, ValueError):
             print('Bad choice')
+
+#These actually run the game.
+
+def main():
+    clean()
+    h_choice = ''  #X or O.
+    c_choice = ''  #X or O.
+    first = ''  #If human is the first.
+
+    #Human player chooses X or O to play.
+
+    while h_choice != 'O' and h_choice != 'X':
+        try:
+            print('')
+            h_choice = input('Choose X or O\nChosen: ').upper()
+        except (EOFError, KeyboardInterrupt):
+            print('Bye')
+            exit()
+        except (KeyError, ValueError):
+            print('Bad choice')
+
+    #AI's marker.
+    if h_choice == 'X':
+        c_choice = 'O'
+    else:
+        c_choice = 'X'
+
+    #Human may starts first.
+
+    clean()
+    while first != 'Y' and first != 'N':
+        try:
+            first = input('First to start?[y/n]: ').upper()
+        except (EOFError, KeyboardInterrupt):
+            print('Bye')
+            exit()
+        except (KeyError, ValueError):
+            print('Bad choice')
+
+    #Main loop of this game.
+
+    while len(empty_cells(board)) > 0 and not game_won(board):
+        if first == 'N':
+            ai_turn(c_choice, h_choice)
+            first = ''
+
+        human_turn(c_choice, h_choice)
+        ai_turn(c_choice, h_choice)
+
+    #If game is won.
+    
+    if wins(board, HUMAN):
+        clean()
+        print(f'Human turn [{h_choice}]')
+        render(board, c_choice, h_choice)
+        print('YOU WIN!')
+    elif wins(board, COMP):
+        clean()
+        print(f'Computer turn [{c_choice}]')
+        print_board(board, c_choice, h_choice)
+        print('YOU LOSE!')
+    else:
+        clean()
+        print_board(board, c_choice, h_choice)
+        print('DRAW!')
+
+    exit()
+
+
+if __name__ == '__main__':
+    main()
