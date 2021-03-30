@@ -122,12 +122,12 @@ def print_board(state, c_choice, h_choice):
     }
     str_line = '---------------'
 
-    print('\n' + str_line)
-    for row in state:
-        for cell in row:
-            symbol = chars[cell]
-            print(f'¦ {symbol} ¦', end='')
-        print('\n' + str_line)
+    print('\n')    
+    print(chars[state[0][0]], " ¦ ", chars[state[0][1]], " ¦ ", chars[state[0][2]])
+    print("-------------")
+    print(chars[state[1][0]], " ¦ ", chars[state[1][1]], " ¦ ", chars[state[1][2]])
+    print("-------------")
+    print(chars[state[2][0]], " ¦ ", chars[state[2][1]], " ¦ ", chars[state[2][2]])
 
 def ai_turn(c_choice, h_choice):
     depth = len(empty_cells(board))
@@ -201,7 +201,7 @@ def main():
             print('Bad choice')
 
     #AI's marker. X always starts first.
-    
+
     if h_choice == 'X':
         c_choice = 'O'
         first = 'Y'
@@ -230,11 +230,11 @@ def main():
         clean()
         print(f'Computer turn [{c_choice}]')
         print_board(board, c_choice, h_choice)
-        print('The AI tastses victory. You only have shame.')
+        print('The AI tastes victory. You only have shame.')
     else:
         clean()
         print_board(board, c_choice, h_choice)
-        print('DRAW!')
+        print('It is a draw. :-(')
 
     exit()
 
