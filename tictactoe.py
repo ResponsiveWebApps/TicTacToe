@@ -167,6 +167,7 @@ def human_turn(c_choice, h_choice):
 
     while move < 1 or move > 9:
         try:
+            print('\n')
             move = int(input('Pick a possition 1-9: '))
             coord = moves[move]
             can_move = set_move(coord[0], coord[1], human)
