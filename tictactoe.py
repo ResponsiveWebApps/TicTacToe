@@ -11,6 +11,7 @@ board = [
     [0, 0, 0],
     [0, 0, 0],
 ]
+move = ''
 gameOn = True
 human_score = 0
 ai_score = 0
@@ -138,7 +139,7 @@ def ai_turn(c_choice, h_choice):
         return
 
     clean()
-    print(f'The unbeatable AI\'\s turn [{c_choice}]')
+    print(f'The unbeatable AI\'s turn [{c_choice}]')
     print_board(board, c_choice, h_choice)
 
     if depth == 9:
@@ -163,9 +164,9 @@ def human_turn(c_choice, h_choice):
         4: [1, 0], 5: [1, 1], 6: [1, 2],
         7: [2, 0], 8: [2, 1], 9: [2, 2],
     }
-
+    
     clean()
-    print(f'The fallible Human\'\s  turn [{h_choice}]')
+    print(f'The fallible Human\'s  turn [{h_choice}]')
     print_board(board, c_choice, h_choice)
 
     while move < 1 or move > 9:
@@ -217,11 +218,6 @@ def main():
 
     while gameOn:
 
-        #Exits game.
-        if newPossition == 0:
-            break
-
-
         while len(empty_cells(board)) > 0 and not game_won(board):
             if first == 'N':
                 ai_turn(c_choice, h_choice)
@@ -239,7 +235,7 @@ def main():
             print('Victory is upon you!')
         elif wins(board, ai):
             clean()
-            print(f'Computer turn [{c_choice}]')
+            print(f'AI turn [{c_choice}]')
             print_board(board, c_choice, h_choice)
             print('The AI tastes victory. You only have shame.')
         else:
