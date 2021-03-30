@@ -96,10 +96,10 @@ def minimax(state, depth, player):
 
         if player == ai:
             if score[2] > best[2]:
-                best = score  # max value
+                best = score  #max value
         else:
             if score[2] < best[2]:
-                best = score  # min value
+                best = score  #min value
 
     return best
 
@@ -135,7 +135,7 @@ def ai_turn(c_choice, h_choice):
         return
 
     clean()
-    print(f'AI turn [{c_choice}]')
+    print(f'The unbeatable AI\'\s turn [{c_choice}]')
     print_board(board, c_choice, h_choice)
 
     if depth == 9:
@@ -162,23 +162,23 @@ def human_turn(c_choice, h_choice):
     }
 
     clean()
-    print(f'Human turn [{h_choice}]')
+    print(f'The fallible Human\'\s  turn [{h_choice}]')
     print_board(board, c_choice, h_choice)
 
     while move < 1 or move > 9:
         try:
-            move = int(input('Use numpad (1..9): '))
+            move = int(input('Pick a possition 1-9: '))
             coord = moves[move]
             can_move = set_move(coord[0], coord[1], human)
 
             if not can_move:
-                print('Bad move')
+                print('Illegal move.')
                 move = -1
         except (EOFError, KeyboardInterrupt):
-            print('Bye')
+            print('Byebye')
             exit()
         except (KeyError, ValueError):
-            print('Bad choice')
+            print('That was a bad choice')
 
 #These actually run the game.
 
@@ -195,10 +195,10 @@ def main():
             print('')
             h_choice = input('Choose X or O\nChosen: ').upper()
         except (EOFError, KeyboardInterrupt):
-            print('Bye')
+            print('Byebye')
             exit()
         except (KeyError, ValueError):
-            print('Bad choice')
+            print('This is a bad choice')
 
     #AI's marker. X always starts first.
 
