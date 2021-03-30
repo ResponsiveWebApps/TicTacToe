@@ -200,25 +200,16 @@ def main():
         except (KeyError, ValueError):
             print('Bad choice')
 
-    #AI's marker.
+    #AI's marker. X always starts first.
+    
     if h_choice == 'X':
         c_choice = 'O'
+        first = 'Y'
     else:
         c_choice = 'X'
+        first = 'N'
 
-    #Human may starts first.
-
-    clean()
-    while first != 'Y' and first != 'N':
-        try:
-            first = input('First to start?[y/n]: ').upper()
-        except (EOFError, KeyboardInterrupt):
-            print('Bye')
-            exit()
-        except (KeyError, ValueError):
-            print('Bad choice')
-
-    #Main loop of this game.
+    #Main loop of the game.
 
     while len(empty_cells(board)) > 0 and not game_won(board):
         if first == 'N':
@@ -228,18 +219,18 @@ def main():
         human_turn(c_choice, h_choice)
         ai_turn(c_choice, h_choice)
 
-    #If game is won.
+    #If the game is won.
     
     if wins(board, human):
         clean()
         print(f'Human turn [{h_choice}]')
         render(board, c_choice, h_choice)
-        print('YOU WIN!')
+        print('Victory is upon you!')
     elif wins(board, ai):
         clean()
         print(f'Computer turn [{c_choice}]')
         print_board(board, c_choice, h_choice)
-        print('YOU LOSE!')
+        print('The AI tastses victory. You only have shame.')
     else:
         clean()
         print_board(board, c_choice, h_choice)
