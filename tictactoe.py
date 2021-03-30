@@ -11,6 +11,9 @@ board = [
     [0, 0, 0],
     [0, 0, 0],
 ]
+gameOn = True
+human_score = 0
+ai_score = 0
 
 #Checks the state of the board and evaluates if the AI won or the human.
 
@@ -212,33 +215,40 @@ def main():
 
     #Main loop of the game.
 
-    while len(empty_cells(board)) > 0 and not game_won(board):
-        if first == 'N':
+    while gameOn:
+
+        #Exits game.
+        if newPossition == 0:
+            break
+
+
+        while len(empty_cells(board)) > 0 and not game_won(board):
+            if first == 'N':
+                ai_turn(c_choice, h_choice)
+                first = ''
+
+            human_turn(c_choice, h_choice)
             ai_turn(c_choice, h_choice)
-            first = ''
 
-        human_turn(c_choice, h_choice)
-        ai_turn(c_choice, h_choice)
+        #If the game is won.
+        
+        if wins(board, human):
+            clean()
+            print(f'Human turn [{h_choice}]')
+            print_board(board, c_choice, h_choice)
+            print('Victory is upon you!')
+        elif wins(board, ai):
+            clean()
+            print(f'Computer turn [{c_choice}]')
+            print_board(board, c_choice, h_choice)
+            print('The AI tastes victory. You only have shame.')
+        else:
+            clean()
+            print_board(board, c_choice, h_choice)
+            print('\n')
+            print('It is a draw. :-(')
 
-    #If the game is won.
-    
-    if wins(board, human):
-        clean()
-        print(f'Human turn [{h_choice}]')
-        print_board(board, c_choice, h_choice)
-        print('Victory is upon you!')
-    elif wins(board, ai):
-        clean()
-        print(f'Computer turn [{c_choice}]')
-        print_board(board, c_choice, h_choice)
-        print('The AI tastes victory. You only have shame.')
-    else:
-        clean()
-        print_board(board, c_choice, h_choice)
-        print('\n')
-        print('It is a draw. :-(')
-
-    exit()
+        exit()
 
 
 if __name__ == '__main__':
