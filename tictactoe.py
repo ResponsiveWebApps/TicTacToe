@@ -193,7 +193,7 @@ def main():
     while h_choice != 'O' and h_choice != 'X':
         try:
             print('')
-            h_choice = input('Choose X or O\nChosen: ').upper()
+            h_choice = input('Choose marker X or O? ').upper()
         except (EOFError, KeyboardInterrupt):
             print('Byebye')
             exit()
@@ -234,6 +234,7 @@ def main():
     else:
         clean()
         print_board(board, c_choice, h_choice)
+        print('\n')
         print('It is a draw. :-(')
 
     exit()
