@@ -173,6 +173,7 @@ def human_turn(c_choice, h_choice):
         try:
             print('\n')
             move = int(input('Pick a possition 1-9: '))
+            print(f'Type 0 to exit game.')
             coord = moves[move]
             can_move = set_move(coord[0], coord[1], human)
 
@@ -184,6 +185,11 @@ def human_turn(c_choice, h_choice):
             exit()
         except (KeyError, ValueError):
             print('That was a bad choice')
+            if move == 0:
+                print('Byebye')
+                exit()
+    
+    
 
 #These actually run the game.
 
@@ -216,35 +222,33 @@ def main():
 
     #Main loop of the game.
 
-    while gameOn:
-
-        while len(empty_cells(board)) > 0 and not game_won(board):
-            if first == 'N':
-                ai_turn(c_choice, h_choice)
-                first = ''
-
-            human_turn(c_choice, h_choice)
+    while len(empty_cells(board)) > 0 and not game_won(board):
+        if first == 'N':
             ai_turn(c_choice, h_choice)
+            first = ''
 
-        #If the game is won.
+        human_turn(c_choice, h_choice)
+        ai_turn(c_choice, h_choice)
+
+    #If the game is won.
         
-        if wins(board, human):
-            clean()
-            print(f'Human turn [{h_choice}]')
-            print_board(board, c_choice, h_choice)
-            print('Victory is upon you!')
-        elif wins(board, ai):
-            clean()
-            print(f'AI turn [{c_choice}]')
-            print_board(board, c_choice, h_choice)
-            print('The AI tastes victory. You only have shame.')
-        else:
-            clean()
-            print_board(board, c_choice, h_choice)
-            print('\n')
-            print('It is a draw. :-(')
+    if wins(board, human):
+        clean()
+        print(f'Human turn [{h_choice}]')
+        print_board(board, c_choice, h_choice)
+        print('Victory is upon you!')
+    elif wins(board, ai):
+        clean()
+        print(f'AI turn [{c_choice}]')
+        print_board(board, c_choice, h_choice)
+        print('The AI tastes victory. You only have shame.')
+    else:
+        clean()
+        print_board(board, c_choice, h_choice)
+        print('\n')
+        print('It is a draw. :-(')
 
-        exit()
+    exit()
 
 
 if __name__ == '__main__':
