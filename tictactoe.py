@@ -179,9 +179,11 @@ def human_turn(c_choice, h_choice):
             if not can_move:
                 print('Illegal move.')
                 move = -1
+
         except (EOFError, KeyboardInterrupt):
             print('Byebye')
             exit()
+            
         except (KeyError, ValueError):
             print('That was a bad choice')
             if move == 0:
