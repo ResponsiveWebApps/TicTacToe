@@ -140,7 +140,6 @@ def ai_turn(c_choice, h_choice):
 
     clean()
     print(f'The unbeatable AI\'s turn [{c_choice}]')
-    print_board(board, c_choice, h_choice)
 
     if depth == 9:
         x = choice([0, 1, 2])
@@ -172,7 +171,13 @@ def human_turn(c_choice, h_choice):
     while move < 1 or move > 9:
         try:
             print('\n')
-            move = int(input('Pick a possition 1-9: \nType 0 to exit game. \n'))
+
+            #Makes a string from the empty possitions.
+            empty_possitions = ""
+            for cell in empty_cells(board):
+                empty_possitions = empty_possitions + " " + str(list(moves.keys())[list(moves.values()).index(cell)])
+
+            move = int(input('Pick a possition:' + empty_possitions + '\nType 0 to exit game. \n'))
             coord = moves[move]
             can_move = set_move(coord[0], coord[1], human)
 
@@ -183,7 +188,7 @@ def human_turn(c_choice, h_choice):
         except (EOFError, KeyboardInterrupt):
             print('Byebye')
             exit()
-            
+
         except (KeyError, ValueError):
             print('That was a bad choice')
             if move == 0:
@@ -196,9 +201,9 @@ def human_turn(c_choice, h_choice):
 
 def main():
     clean()
-    h_choice = ''  #X or O.
-    c_choice = ''  #X or O.
-    first = ''  #If human is the first.
+    h_choice = ''  
+    c_choice = ''  
+    first = ''  #If the human is first.
 
     #Human player chooses X or O to play.
 
