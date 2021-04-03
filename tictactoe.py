@@ -79,7 +79,7 @@ def set_move(x, y, player):
     else:
         return False
 
-#Calculate the minimax for optimal move
+#Calculate the minimax for optimal move.
 
 def minimax(state, depth, player):
     if player == ai:

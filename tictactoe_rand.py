@@ -74,50 +74,9 @@ def reset_game():
     markers[8] = " "
 
 
-def empty_cells(state):
-    """
-    Each empty cell will be added into cells' list
-    :param state: the state of the current board
-    :return: a list of empty cells
-    """
-    cells = []
-
-    for x in enumerate(state):
-        if x != "X" or x != "O":
-            cells.append([x])
-    
-    #for testing
-    print(cells)
-    return cells
-
-def minimax(state, depth, player):
-    if player == "AI":
-        best = [-1, -1, -infinity]
-    else:
-        best = [-1, -1, +infinity]
-
-    for cell in empty_cells(state):
-        x, y = cell[0], cell[1]
-        state[x][y] = player
-        score = minimax(state, depth - 1, -player)
-        state[x][y] = 0
-        score[0], score[1] = x, y
-
-        if player == "AI":
-            if score[2] > best[2]:
-                best = score  # max value
-        else:
-            if score[2] < best[2]:
-                best = score  # min value
-
-    return best
-
 #AI places marker.
 def ai_marker():
     aiMarker = random.randrange(0,8)
-    #depth = len(empty_cells(markers))
-    #aiMarker = minimax(markers, depth, player)
-    #print(aiMarker)
 
     while markers[aiMarker] == "X" or markers[aiMarker] == "O":
         aiMarker = random.randrange(0,8)
