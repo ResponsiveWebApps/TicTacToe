@@ -1,3 +1,5 @@
+#Tic tac toe with random algorithim.
+
 import random
 from math import inf as infinity
 

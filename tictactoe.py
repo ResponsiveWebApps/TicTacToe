@@ -1,3 +1,5 @@
+#Tic tac toe with minimax algorithim.
+
 from math import inf as infinity
 from random import choice
 import platform
